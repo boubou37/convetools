@@ -6,19 +6,18 @@ export class ComparerService {
   constructor() { }
 
   //search for elements in array b not in array a
-  findMissingIn(a: any, b: any) {
+  findMissingIn(a: any[], reference: any[]) : any[]{
     //only comparing same types
-    if (typeof a !== typeof b) return;
-
-    if (typeof a === "number") {
-      this.findMissingNumbers(a,b);
-    }
-
-    if (typeof a === "string") {
-      //findMissingString(a,b);
-    }
+    return this.findMissingNumbers(a,reference);
   }
 
   findMissingNumbers(a: number[], b: number[]) {
+    var res: number[] = [];
+    a.forEach( x => {
+      if (!b.includes(x)) {
+        res.push(x);
+      }
+    },this);
+    return res;
   }
 }
